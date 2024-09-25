@@ -1,28 +1,42 @@
 package Ejercicios.Distancia;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 public class Distancia {
 
-    public static void main(String[] args) {
-        double latitudIgualada = 41.57879;
-        double longitudIgualada = 1.617221;
-        double latitudGranada = 37.176487;
-        double longitudGranada = -3.597929;
+    private static final BigDecimal radio = new BigDecimal("6371.0");
+    private static final MathContext mc = new MathContext(34, RoundingMode.HALF_UP);
 
-        double distancia = calculo(latitudIgualada, longitudIgualada, latitudGranada, longitudGranada);
-        System.out.println("Distancia: " + Math.round(distancia) + " km");
+    public static void main(String[] args) {
+        Posicion Igualada = new Posicion(41.57879F, 1.617221F);
+        Posicion Granada = new Posicion(37.176487F, -3.597929F);
+
+        BigDecimal distancia = calculo(Igualada, Granada);  // Cambiado a BigDecimal
+        System.out.println("La distancia es: " + distancia + " km");
     }
 
-    public static double calculo(double latitud1, double longitud1, double latitud2, double longitud2) {
-        final double radio = 6378.0;
+    public static BigDecimal calculo(Posicion p1, Posicion p2) {
+        BigDecimal latitud1Rad = radianes(p1.getLatitud());
+        BigDecimal longitud1Rad = radianes(p1.getLongitud());
+        BigDecimal latitud2Rad = radianes(p2.getLatitud());
+        BigDecimal longitud2Rad = radianes(p2.getLongitud());
 
-        double latitud = Math.toRadians(latitud2 - latitud1);
-        double longitud = Math.toRadians(longitud2 - longitud1);
+        BigDecimal deltaLat = latitud2Rad.subtract(latitud1Rad, mc);
+        BigDecimal deltaLon = longitud2Rad.subtract(longitud1Rad, mc);
 
-        double a = Math.pow(Math.sin(latitud / 2), 2) + Math.cos(Math.toRadians(latitud1)) *
-                Math.cos(Math.toRadians(latitud2)) * Math.pow(Math.sin(longitud / 2), 2);
+        double a = Math.pow(Math.sin(deltaLat.doubleValue() / 2), 2) +
+                Math.cos(latitud1Rad.doubleValue()) * Math.cos(latitud2Rad.doubleValue()) *
+                        Math.pow(Math.sin(deltaLon.doubleValue() / 2), 2);
 
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double b= 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return radio * c;
+        return radio.multiply(BigDecimal.valueOf(b), mc);
+    }
+
+    private static BigDecimal radianes(BigDecimal grados) {
+        BigDecimal pi = new BigDecimal(Math.PI, mc);
+        return grados.multiply(pi, mc).divide(new BigDecimal("180"), mc);
     }
 }
