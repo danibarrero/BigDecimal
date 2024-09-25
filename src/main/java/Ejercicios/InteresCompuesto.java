@@ -12,7 +12,7 @@ public class InteresCompuesto {
         int tiempo = 4;
 
         BigDecimal amount = calculo(debe, tasa, anio, tiempo);
-        System.out.println("cantidad despues de " + anio + " años: " + amount);
+        System.out.println("Cantidad despues de " + anio + " años: " + amount);
     }
 
     public static BigDecimal calculo(BigDecimal principal, BigDecimal tasa, int anio, int tiempo) {
@@ -26,6 +26,4 @@ public class InteresCompuesto {
         return result.setScale(2, RoundingMode.HALF_UP);
     }
 
-    //git commit -m "*****"
-    //git commit push
 }
