@@ -25,7 +25,5 @@ public class Main {
 
         System.out.println(account1.getShoppingCard().getLineItems());
 
-
-
     }
 }
