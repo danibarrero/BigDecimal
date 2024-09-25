@@ -1,5 +1,7 @@
 package Ejercicios.Tienda;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         WebUser user = new WebUser("user", "1234");
@@ -11,14 +13,19 @@ public class Main {
         Product producto2 = new Product("Tv", "carrefour");
         Product producto3 = new Product("Play", "game");
 
-        ShoppingCard carrito1 = account1.getShoppingCard();
-        carrito1.añadir(producto1, 2);
-        carrito1.añadir(producto2,1);
 
-        ShoppingCard carrito2 = account2.getShoppingCard();
-        carrito2.añadir(producto3, 1);
+        LineItem item1 = new LineItem(producto1, 2);
+        LineItem item2 = new LineItem(producto2, 1);
+        LineItem item3 = new LineItem(producto3, 1);
+        List<LineItem> items = List.of(item1, item2, item3);
 
-        Order order = new Order(carrito1);
+        ShoppingCard carrito1 = new ShoppingCard(items, 2);
+
+        account1.setShoppingCard(carrito1);
+
+        System.out.println(account1.getShoppingCard().getLineItems());
+
+
 
     }
 }

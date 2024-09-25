@@ -7,6 +7,7 @@ public class Customer {
     private String phone;
     private String email;
     private List<Address> address;
+    private Account account;
 
     public Customer(String id, String email, String phone) {
         this.id = id;
@@ -44,5 +45,13 @@ public class Customer {
 
     public void setAddress(List<Address> address) {
         this.address = address;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
