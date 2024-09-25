@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 
 public class Distancia {
 
-    private static final BigDecimal radio = new BigDecimal("6371");
+    private static final BigDecimal radio = new BigDecimal("6371.0");
     private static final MathContext mc = new MathContext(34, RoundingMode.HALF_UP);
 
     public static void main(String[] args) {
