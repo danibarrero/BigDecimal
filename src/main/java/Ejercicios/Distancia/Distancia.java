@@ -6,14 +6,14 @@ import java.math.RoundingMode;
 
 public class Distancia {
 
-    private static final BigDecimal radio = new BigDecimal("6371.0");
+    private static final BigDecimal radio = new BigDecimal("6371");
     private static final MathContext mc = new MathContext(34, RoundingMode.HALF_UP);
 
     public static void main(String[] args) {
         Posicion Igualada = new Posicion(41.57879F, 1.617221F);
         Posicion Granada = new Posicion(37.176487F, -3.597929F);
 
-        BigDecimal distancia = calculo(Igualada, Granada);  // Cambiado a BigDecimal
+        BigDecimal distancia = calculo(Igualada, Granada);
         System.out.println("La distancia es: " + distancia + " km");
     }
 
