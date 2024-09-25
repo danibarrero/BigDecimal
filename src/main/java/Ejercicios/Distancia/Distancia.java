@@ -27,8 +27,7 @@ public class Distancia {
         BigDecimal deltaLon = longitud2Rad.subtract(longitud1Rad, mc);
 
         double a = Math.pow(Math.sin(deltaLat.doubleValue() / 2), 2) +
-                Math.cos(latitud1Rad.doubleValue()) * Math.cos(latitud2Rad.doubleValue()) *
-                        Math.pow(Math.sin(deltaLon.doubleValue() / 2), 2);
+                Math.cos(latitud1Rad.doubleValue()) * Math.cos(latitud2Rad.doubleValue()) * Math.pow(Math.sin(deltaLon.doubleValue() / 2), 2);
 
         double b= 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
