@@ -8,7 +8,7 @@ public class InteresCompuesto {
     public static void main(String[] args) {
         BigDecimal debe = new BigDecimal("10000.00");
         BigDecimal tasa = new BigDecimal("0.05");
-        int anio = 10;
+        int anio = 5;
         int tiempo = 4;
 
         BigDecimal amount = calculo(debe, tasa, anio, tiempo);
@@ -25,5 +25,4 @@ public class InteresCompuesto {
 
         return result.setScale(2, RoundingMode.HALF_UP);
     }
-
 }
